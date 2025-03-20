@@ -1,4 +1,3 @@
-import ArtistHover from "@/components/artist/ArtistHover";
 import AlbumList from "@/components/artistList/artistList";
 
 export default function Home() {

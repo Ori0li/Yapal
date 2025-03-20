@@ -1,5 +1,5 @@
 "use client";
-
+// AlbumList 컴포넌트
 import { useAlbumStore } from "@/data/albumStore";
 import { useEffect, useMemo } from "react";
 import ArtistHover from "../artist/ArtistHover";
@@ -27,15 +27,18 @@ const AlbumList = () => {
     <div className="p-12">
       <h2 className="text-white">아티스트 리스트</h2>
       <div className="grid grid-cols-4">
-        {uniqueArtists.map((artist) => (
-          <Link href={`/detail/${artist.artistName}`}>
-            <ArtistHover
-              key={artist.id}
-              image={artist.artistsImageUrl}
-              name={artist.artistName}
-            />
-          </Link>
-        ))}
+        {uniqueArtists.map((artist) => {
+          const encodedArtistName = encodeURIComponent(artist.artistName);
+
+          return (
+            <Link href={`/detail/${encodedArtistName}`} key={artist.artistName}>
+              <ArtistHover
+                image={artist.artistsImageUrl}
+                name={artist.artistName}
+              />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

@@ -3,14 +3,14 @@ import { Colorize } from "@/common/Style/color";
 const Footer = () => {
   return (
     <div
-      className="flex flex-col gap-7 mt-8 pb-11"
+      className="flex flex-col gap-7 pt-8 pb-11"
       style={{
         backgroundColor: Colorize.Secondary_01,
         color: Colorize.Neutral_02,
       }}
     >
       <div
-        className="flex gap-24 px-12 pb-24 "
+        className="flex gap-24 px-12 pb-24"
         style={{
           borderBottom: "1px solid #777777",
         }}

@@ -1,5 +1,5 @@
 import { Colorize } from "@/common/Style/color";
-import Image from "next/image";
+import { motion } from "framer-motion";
 import PlayButton from "../icon/PlayButton";
 
 type Artist = {
@@ -10,26 +10,28 @@ type Artist = {
 const ArtistHover = ({ image, name }: Artist) => {
   return (
     <article className="p-2 w-[180px] flex flex-col items-center">
-      <div className=" relative">
+      <motion.div className="relative" whileHover="hover" initial="initial">
         <div className="w-[180px] h-[180px] rounded-full overflow-hidden">
           <img src={image} alt={name} />
         </div>
-        <div
+        <motion.div
           className="w-8 h-8 absolute right-1 bottom-1 flex justify-center items-center"
           style={{
             backgroundColor: Colorize.Primary_01,
             borderRadius: "50%",
           }}
+          variants={{
+            initial: { opacity: 0 },
+            hover: { opacity: 1 },
+          }}
+          transition={{ duration: 0.3 }}
         >
           <PlayButton />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <div className="mt-3">
-        <p className="text-sm" style={{ color: Colorize.Secondary_03 }}>
-          {"노래제목"}
-        </p>
-        <p className="text-xs" style={{ color: Colorize.Neutral_01 }}>
-          {"아티스트"}
+        <p className="text-xl" style={{ color: Colorize.Neutral_01 }}>
+          {name}
         </p>
       </div>
     </article>

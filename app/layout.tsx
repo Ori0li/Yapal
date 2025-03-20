@@ -32,7 +32,7 @@ export default function RootLayout({
         <div className="flex-1/6 justify-center">
           <Aside />
         </div>
-        <div className="flex-5/6 ml-1">
+        <div className="flex-5/6">
           <Header />
           <div>{children}</div>
           <Footer />
