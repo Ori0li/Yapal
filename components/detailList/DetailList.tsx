@@ -29,16 +29,19 @@ const DetailList = ({ artistName }: { artistName: string }) => {
     <>
       <SubHeader image={album.artistsImageUrl} name={album.artistName} />
       <div className="p-11 ">
-        <div className=" max-w-full flex flex-col sm:flex-row sm:w-full justify-between mb-20">
+        <div className="max-w-full flex flex-col sm:flex-row sm:w-full justify-between mb-20">
+          {/* 🎵 SongList 영역 */}
           <div
-            className="flex-2 w-full h-[300px] overflow-auto [&::-webkit-scrollbar]:w-1.5
-  [&::-webkit-scrollbar-track]:rounded-full
-  [&::-webkit-scrollbar-track]:bg-transparent
-  [&::-webkit-scrollbar-thumb]:rounded-full
-  [&::-webkit-scrollbar-thumb]:bg-white "
+            className="flex-2 w-full max-h-[300px] overflow-y-auto 
+      flex flex-col gap-4
+      [&::-webkit-scrollbar]:w-1.5
+      [&::-webkit-scrollbar-track]:rounded-full
+      [&::-webkit-scrollbar-track]:bg-transparent
+      [&::-webkit-scrollbar-thumb]:rounded-full
+      [&::-webkit-scrollbar-thumb]:bg-white"
           >
             {artistAlbums.map((v, i) => (
-              <div key={v.id}>
+              <div key={v.id} className="flex-shrink-0">
                 <SongList
                   number={i}
                   name={v.trackName}
@@ -49,7 +52,12 @@ const DetailList = ({ artistName }: { artistName: string }) => {
               </div>
             ))}
           </div>
-          <div key={album.id} className="flex-1 w-full m-auto">
+
+          {/* 🎤 Artist Description */}
+          <div
+            key={album.id}
+            className="flex-1 w-full m-auto sm:max-w-[300px] mt-8 sm:mt-0"
+          >
             <ArtistDescription
               popularity={album.popularity}
               genre={album.genres}
@@ -57,6 +65,7 @@ const DetailList = ({ artistName }: { artistName: string }) => {
             />
           </div>
         </div>
+
         <h2 className="text-white">아티스트의 다른 엘범들</h2>
         <div className="grid grid-cols-3 sm:flex gap-10">
           {uniqueAlbums.map((v) => (
