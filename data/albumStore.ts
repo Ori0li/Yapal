@@ -8,35 +8,7 @@ import {
   setDoc,
   orderBy,
 } from "firebase/firestore";
-
-export type Album = {
-  id: number;
-  albumsName: string;
-  artistName: string;
-  genres: string[];
-  popularity: number;
-  followers: number;
-  artistsImageUrl: string;
-  albumImageUrl: string;
-  releaseDate: string;
-  trackName: string;
-  trackDuration: string;
-};
-
-type AlbumStoreState = {
-  albumName: string;
-  artistName: string;
-  genres: string[];
-  popularity: number;
-  followers: number;
-  artistsImageUrl: string;
-  albumImageUrl: string;
-  releaseDate: string;
-  trackName: string;
-  trackDuration: string;
-  albums: Album[];
-  nextId: number;
-};
+import { Album, AlbumStoreState } from "@/common/Type/type";
 
 type AlbumStoreActions = {
   setField: <K extends keyof AlbumStoreState>(

@@ -1,20 +1,16 @@
 import { Colorize } from "@/common/Style/color";
 import { bodyFont, headerFont } from "@/common/Style/font";
+import { AlbumProps } from "@/common/Type/type";
 import Image from "next/image";
-
-type AlbumProps = {
-  image: string;
-  name: string;
-};
 
 const Album = ({ name, image }: AlbumProps) => {
   return (
-    <article className="max-w-[280px]">
-      <Image src={image} alt={name} width={280} height={280} />
+    <article className="max-w-[220px]">
+      <Image src={image} alt={name} width={220} height={220} />
       <div className="mt-1">
         <p
           style={{
-            fontSize: "18px",
+            fontSize: "14px",
             color: Colorize.Neutral_01,
           }}
         >

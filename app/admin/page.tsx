@@ -9,7 +9,6 @@ const AdminPage = () => {
   const {
     albumName,
     artistName,
-    genres,
     popularity,
     followers,
     artistsImageUrl,

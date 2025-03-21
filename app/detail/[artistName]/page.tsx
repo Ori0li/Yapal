@@ -1,11 +1,5 @@
-import { useAlbumStore } from "@/data/albumStore";
-import SubHeader from "@/components/header/SubHeader";
-import Album from "@/components/artist/Album";
+import { DetailProps } from "@/common/Type/type";
 import DetailList from "@/components/detailList/DetailList";
-
-type DetailProps = {
-  params: { artistName: string };
-};
 
 const DetailPage = async ({ params }: DetailProps) => {
   const { artistName } = await params;

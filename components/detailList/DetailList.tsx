@@ -3,21 +3,17 @@
 import { useAlbumStore } from "@/data/albumStore";
 import SubHeader from "@/components/header/SubHeader";
 import Album from "@/components/artist/Album";
+import SongList from "../playList/SongList";
+import ArtistDescription from "../artist/ArtistDescription";
 
 const DetailList = ({ artistName }: { artistName: string }) => {
   const { albums } = useAlbumStore();
-  // URL 디코딩 및 소문자로 변환하여 처리
   const cleanedArtistName = decodeURIComponent(artistName).toLowerCase();
-
-  console.log("Original Artist Name:", artistName); // 원본 artistName
-  console.log("Cleaned Artist Name:", cleanedArtistName);
-
   const artistAlbums = albums.filter(
     (album) =>
       decodeURIComponent(album.artistName).toLowerCase() === cleanedArtistName
   );
 
-  // 앨범의 id를 기준으로 중복 제거
   const uniqueAlbums = artistAlbums.filter(
     (value, index, self) =>
       index === self.findIndex((t) => t.albumsName === value.albumsName)
@@ -32,17 +28,49 @@ const DetailList = ({ artistName }: { artistName: string }) => {
   return (
     <>
       <SubHeader
-        key={album.id}
         image={album.artistsImageUrl}
         name={album.artistName}
         follower={album.followers}
       />
-      <div className="grid grid-cols-3 py-36 px-48 gap-24">
-        {uniqueAlbums.map((v) => (
-          <div key={v.id}>
-            <Album name={v.albumsName} image={v.albumImageUrl} />
+      <div className="p-11">
+        <div className=" w-full flex justify-between mb-20">
+          <div
+            className="flex-2 w-full h-[300px] overflow-auto  [&::-webkit-scrollbar]:w-1.5
+  [&::-webkit-scrollbar-track]:rounded-full
+  [&::-webkit-scrollbar-track]:bg-transparent
+  [&::-webkit-scrollbar-thumb]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-white"
+          >
+            {artistAlbums.map((v, i) => (
+              <div>
+                <SongList
+                  key={v.id}
+                  number={i}
+                  name={v.trackName}
+                  image={v.albumImageUrl}
+                  followers={v.followers}
+                  duration={v.trackDuration}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+          <div className="flex-1 w-full m-auto">
+            <ArtistDescription
+              key={album.id}
+              popularity={album.popularity}
+              genre={album.genres}
+              follower={album.followers}
+            />
+          </div>
+        </div>
+        <h2 className="text-white">싸발적인 엘범들</h2>
+        <div className="flex gap-10">
+          {uniqueAlbums.map((v) => (
+            <div>
+              <Album key={v.id} name={v.albumsName} image={v.albumImageUrl} />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

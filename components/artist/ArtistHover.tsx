@@ -1,13 +1,9 @@
 import { Colorize } from "@/common/Style/color";
 import { motion } from "framer-motion";
 import PlayButton from "../icon/PlayButton";
+import { ArtistProps } from "@/common/Type/type";
 
-type Artist = {
-  image: string;
-  name: string;
-};
-
-const ArtistHover = ({ image, name }: Artist) => {
+const ArtistHover = ({ image, name }: ArtistProps) => {
   return (
     <article className="p-2 w-[180px] flex flex-col items-center">
       <motion.div className="relative" whileHover="hover" initial="initial">
