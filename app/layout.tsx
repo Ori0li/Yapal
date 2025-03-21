@@ -5,6 +5,7 @@ import { Colorize } from "@/common/Style/color";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import Aside from "@/components/aside/Aside";
+import HiddenHeader from "@/components/header/HiddenHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,12 +29,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex" style={{ backgroundColor: Colorize.Secondary_02 }}>
-        <div className="flex-1/6 justify-center">
+      <body
+        className="sm:flex"
+        style={{ backgroundColor: Colorize.Secondary_02 }}
+      >
+        <div className=" sm:flex-1/6 justify-center">
           <Aside />
         </div>
-        <div className="flex-5/6">
+        <div className="sm:flex-5/6 ">
           <Header />
+          <HiddenHeader />
           <div>{children}</div>
           <Footer />
         </div>

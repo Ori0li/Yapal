@@ -8,10 +8,10 @@ const Header = () => {
   const router = useRouter();
   return (
     <section
-      className="w-full px-8 py-5 text-white "
+      className="w-full hidden sm:flex px-8 py-5 text-white "
       style={{ backgroundColor: Colorize.Secondary_01 }}
     >
-      <figure className="flex justify-between">
+      <div className="flex justify-between">
         <div className="flex items-center gap-3">
           <div className="flex gap-3 text-2xl">
             <button onClick={() => router.back()} className="p-2">
@@ -30,7 +30,7 @@ const Header = () => {
             />
           </div>
         </div>
-        <div className="flex items-center justify-center gap-4 text-center">
+        <div className="flex items-center justify-center gap-4 text-center ">
           <a
             href="https://www.spotify.com/kr-ko/signup?flow_id=9a56012b-c077-458e-b8e9-bacf6074b794%3A1742483401&forward_url=https%3A%2F%2Fopen.spotify.com%2F%3Fflow_ctx%3D9a56012b-c077-458e-b8e9-bacf6074b794%253A1742483401"
             className="flex items-center justify-center h-10 font-semibold w-30 "
@@ -45,7 +45,7 @@ const Header = () => {
             Log in
           </a>
         </div>
-      </figure>
+      </div>
     </section>
   );
 };

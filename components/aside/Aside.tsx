@@ -1,36 +1,49 @@
+"use client";
 import { Colorize } from "@/common/Style/color";
 import { headerFont } from "@/common/Style/font";
 import Image from "next/image";
 import { GoHomeFill } from "react-icons/go";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const Aside = () => {
+  const router = useRouter();
+  const pathname = usePathname(); // 현재 경로 가져오기
+
+  const isActive = pathname === "/";
   return (
     <section
-      className="p-5 flex flex-col items-center gap-5 h-full"
+      className="p-5 hidden sm:flex flex-col items-center gap-5 h-full "
       style={{ backgroundColor: Colorize.Secondary_01 }}
     >
-      <div>
-        <Image width={180} height={95} src={"/Logo.png"} alt={""} />
-      </div>
-      <div
-        className="flex gap-3 w-full h-14 p-4 items-center rounded-xl"
+      <Link href="https://accounts.spotify.com/ko/login?continue=https%3A%2F%2Fopen.spotify.com%2F">
+        <Image width={180} height={85} src={"/Logo.png"} alt="" priority />
+      </Link>
+      <button
+        onClick={() => router.push("/")}
+        className="flex items-center w-full h-8 gap-1 p-4 mt-4 rounded-md"
         style={{
-          color: Colorize.Secondary_03,
-          backgroundColor: Colorize.Neutral_03,
+          color: isActive ? Colorize.Secondary_03 : Colorize.Neutral_01,
+          backgroundColor: isActive ? Colorize.Neutral_03 : "initial",
         }}
       >
         <GoHomeFill style={headerFont.Header02} />
-        <h3 style={headerFont.Header03}>Home</h3>
-      </div>
-      <div
-        className="flex gap-3 w-full p-4 items-center rounded-xl"
+        <div className="text-xs font-semibold" style={headerFont.Header04}>
+          Home
+        </div>
+      </button>
+      <Link
+        href="https://accounts.spotify.com/ko/login?continue=https%3A%2F%2Fopen.spotify.com%2F"
+        className="flex items-center w-full h-8 p-4 rounded-md"
         style={{
-          color: Colorize.Secondary_03,
-          backgroundColor: Colorize.Neutral_03,
+          color: Colorize.Neutral_01,
         }}
       >
-        <h3 style={headerFont.Header03}>Log in</h3>
-      </div>
+        <div className="text-xs font-semibold" style={headerFont.Header04}>
+          Log in
+        </div>
+      </Link>
     </section>
   );
 };

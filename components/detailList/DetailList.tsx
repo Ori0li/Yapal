@@ -27,24 +27,19 @@ const DetailList = ({ artistName }: { artistName: string }) => {
 
   return (
     <>
-      <SubHeader
-        image={album.artistsImageUrl}
-        name={album.artistName}
-        follower={album.followers}
-      />
-      <div className="p-11">
-        <div className=" w-full flex justify-between mb-20">
+      <SubHeader image={album.artistsImageUrl} name={album.artistName} />
+      <div className="p-11 ">
+        <div className=" max-w-full flex flex-col sm:flex-row sm:w-full justify-between mb-20">
           <div
-            className="flex-2 w-full h-[300px] overflow-auto  [&::-webkit-scrollbar]:w-1.5
+            className="flex-2 w-full h-[300px] overflow-auto [&::-webkit-scrollbar]:w-1.5
   [&::-webkit-scrollbar-track]:rounded-full
   [&::-webkit-scrollbar-track]:bg-transparent
   [&::-webkit-scrollbar-thumb]:rounded-full
-  [&::-webkit-scrollbar-thumb]:bg-white"
+  [&::-webkit-scrollbar-thumb]:bg-white "
           >
             {artistAlbums.map((v, i) => (
-              <div>
+              <div key={v.id}>
                 <SongList
-                  key={v.id}
                   number={i}
                   name={v.trackName}
                   image={v.albumImageUrl}
@@ -54,20 +49,19 @@ const DetailList = ({ artistName }: { artistName: string }) => {
               </div>
             ))}
           </div>
-          <div className="flex-1 w-full m-auto">
+          <div key={album.id} className="flex-1 w-full m-auto">
             <ArtistDescription
-              key={album.id}
               popularity={album.popularity}
               genre={album.genres}
               follower={album.followers}
             />
           </div>
         </div>
-        <h2 className="text-white">싸발적인 엘범들</h2>
-        <div className="flex gap-10">
+        <h2 className="text-white">아티스트의 다른 엘범들</h2>
+        <div className="grid grid-cols-3 sm:flex gap-10">
           {uniqueAlbums.map((v) => (
-            <div>
-              <Album key={v.id} name={v.albumsName} image={v.albumImageUrl} />
+            <div key={v.id}>
+              <Album name={v.albumsName} image={v.albumImageUrl} />
             </div>
           ))}
         </div>

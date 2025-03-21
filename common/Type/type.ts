@@ -30,7 +30,6 @@ export type AlbumStoreState = {
 export type SubHeaderProps = {
   image: string;
   name: string;
-  follower: number;
 };
 
 export type ArtistProps = {

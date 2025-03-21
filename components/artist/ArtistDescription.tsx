@@ -10,7 +10,7 @@ const ArtistDescription = ({
 }: ArtistDescriptionProps) => {
   return (
     <div className="w-full p-10 flex flex-col gap-7 rounded-xl">
-      <div className="flex flex-col gap-3">
+      <div className="flex justify-between sm:flex-col gap-3">
         <P icon={BsArrowThroughHeart} text={popularity} />
         <P icon={TbMoodPlus} text={`${follower}명`} />
         <P text={[...new Set(genre)].join(" , ")} />

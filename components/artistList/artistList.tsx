@@ -24,9 +24,9 @@ const AlbumList = () => {
   }, [albums]);
 
   return (
-    <div className="p-12">
+    <div className="sm:p-12 p-5 justify-center">
       <h2 className="text-white">아티스트 리스트</h2>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4">
         {uniqueArtists.map((artist) => {
           const encodedArtistName = encodeURIComponent(artist.artistName);
 

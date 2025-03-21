@@ -31,7 +31,7 @@ const SongList = ({ number, name, image, duration, followers }: SongProps) => {
       </div>
       <div className="flex items-center mr-12 gap-28">
         <div
-          className="text-sm font-bold"
+          className="text-sm font-bold hidden sm:block"
           style={{
             color: Colorize.Neutral_01,
           }}
