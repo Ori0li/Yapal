@@ -7,13 +7,13 @@ import { HiCheckBadge } from "react-icons/hi2";
 const SubHeader = ({ image, name }: SubHeaderProps) => {
   return (
     <article
-      className="max-w-full py-10 px-32 flex flex-col sm:flex-row items-end"
+      className="max-w-full py-10 px-6 sm:px-32 flex flex-col sm:flex-row items-center sm:items-end"
       style={{
         background:
           "linear-gradient(to bottom, rgba(205, 168, 228, 1), rgba(18, 18, 18, 1))",
       }}
     >
-      <div className="w-[450px] h-[450px] rounded-full sm:w-[350px] sm:h-[350px] sm:rounded-t-full overflow-hidden">
+      <div className="w-[300px] h-[300px] rounded-full sm:w-[350px] sm:h-[350px] sm:rounded-t-full overflow-hidden">
         <img src={image} alt={name} />
       </div>
       <span
