@@ -8,12 +8,14 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAlbumStore } from "@/common/store/albumStore";
 import SongList from "../playList/SongList";
 import AlbumProfileBox from "../detail/subcomponents/AlbumProfileBox";
+import { Album } from "@/common/Type/type";
+import AudioTrack from "./AudioTrack";
 
-// ✅ 세로 스크롤에 맞게 마스크 애니메이션 수정
+// ✅ 스크롤 마스크 유틸
 const top = `0%`;
 const bottom = `100%`;
 const topInset = `20%`;
@@ -54,6 +56,11 @@ const useScrollOverflowMask = (scrollYProgress: MotionValue<number>) => {
 const TrackList = ({ trackName }: { trackName: string }) => {
   const { albums, getAlbums } = useAlbumStore();
 
+  const [selectedTrack, setSelectedTrack] = useState<Pick<
+    Album,
+    "trackName" | "trackDuration" | "albumImageUrl" | "artistName"
+  > | null>(null);
+
   useEffect(() => {
     getAlbums();
   }, [getAlbums]);
@@ -64,19 +71,22 @@ const TrackList = ({ trackName }: { trackName: string }) => {
 
   const maskImage = useScrollOverflowMask(scrollYProgress);
 
-  // 해당 trackName을 가진 앨범들
   const albumTracks = albums.filter(
     (album) =>
       decodeURIComponent(album.albumsName).toLowerCase() === cleanedTrackName
   );
 
-  // 해당 트랙이 포함된 앨범 이름
   const currentAlbumName = albumTracks[0]?.albumsName;
 
-  // 해당 앨범 이름으로 고유 앨범 하나 찾기
   const albumInfo = albums.find(
     (album) => album.albumsName === currentAlbumName
   );
+
+  const onClick = (i: number) => {
+    const albumTrack = albumTracks[i];
+    const { artistName, albumImageUrl, trackDuration, trackName } = albumTrack;
+    setSelectedTrack({ artistName, albumImageUrl, trackDuration, trackName });
+  };
 
   if (albumTracks.length === 0 || !albumInfo) {
     return <div>해당 트랙을 찾을 수 없습니다.</div>;
@@ -129,13 +139,17 @@ const TrackList = ({ trackName }: { trackName: string }) => {
             <SongList
               key={v.trackName}
               number={i}
-              image={""}
+              image={v.albumImageUrl}
               name={v.trackName}
               duration={v.trackDuration}
+              onClick={() => onClick(i)}
             />
           ))}
         </motion.ul>
       </div>
+
+      {/* ✅ 선택된 트랙 정보 표시 */}
+      {selectedTrack && <AudioTrack track={selectedTrack} />}
     </div>
   );
 };
