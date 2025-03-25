@@ -33,13 +33,13 @@ const Header = () => {
       );
     }
   };
-  // 인풋 클릭시 이전 검색어 드롭 다운열기
+  // 인풋 클릭시 이전 검색어 드롭 다운
   const handleFocus = () => {
     loadRecentKeywords();
     setShowDropdown(true);
   };
 
-  // 외부 클릭 시 드롭다운 닫기
+  // 외부 클릭 시 드롭닫기
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (inputRef.current && !inputRef.current.contains(e.target as Node)) {
@@ -69,12 +69,12 @@ const Header = () => {
             </div>
 
             <div className="flex flex-col relative" ref={inputRef}>
-              <div className="flex items-center px-4 py-2 text-gray-400 bg-neutral-900 rounded-3xl w-[500px] border-2 border-white">
+              <div className="flex items-center px-4 py-2 text-gray-400 bg-white rounded-3xl w-64">
                 <IoSearchOutline className="mr-2.5" />
 
                 {/* 검색바 + 드롭다운 구성 */}
                 <input
-                  className="outline-0 text-white w-full"
+                  className="outline-0 text-black w-full"
                   type="text"
                   placeholder="Artist, songs, or products"
                   value={search}
@@ -88,11 +88,11 @@ const Header = () => {
               </div>
 
               {showDropdown && recentKeywords.length > 0 && (
-                <ul className="absolute top-full left-0 mt-2 w-full bg-black text-white rounded-xl shadow-lg overflow-hidden">
+                <ul className="absolute top-full left-0 mt-2 w-full bg-white text-black rounded-xl shadow-lg overflow-hidden">
                   {recentKeywords.map((keyword, idx) => (
                     <li
                       key={idx}
-                      className="flex justify-between items-center px-4 py-2 hover:bg-neutral-700 text-sm group"
+                      className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 text-sm group"
                     >
                       {/* 검색어 텍스트 클릭 시 검색 실행 */}
                       <span
@@ -111,7 +111,7 @@ const Header = () => {
 
                       {/* 삭제 버튼 */}
                       <button
-                        className="text-white hover:text-red-500 text-xs ml-2 group-hover:opacity-100 opacity-0 transition"
+                        className="text-black hover:text-red-500 text-xs ml-2 group-hover:opacity-100 opacity-0 transition"
                         onClick={(e) => {
                           e.stopPropagation();
                           useHeaderStore
@@ -127,7 +127,7 @@ const Header = () => {
               )}
             </div>
           </div>
-
+          {/* 로그인 */}
           <div className="flex items-center justify-center gap-4 text-center">
             <Link
               href="https://www.spotify.com/kr-ko/signup"
@@ -152,10 +152,10 @@ const Header = () => {
         style={{ backgroundColor: Colorize.Secondary_01 }}
       >
         <Image width={110} height={35} src={"/Logo.png"} alt={"Spotify Logo"} />
-        <div className="flex items-center justify-between px-4 py-2 text-gray-400 bg-neutral-900 rounded-3xl border-2 border-white">
+        <div className="flex items-center justify-between px-4 py-2 text-gray-400 bg-white rounded-3xl">
           <IoSearchOutline className="mr-2.5" />
           <input
-            className="outline-0 w-5xs rounded-2xl text-white"
+            className="outline-0 w-5xs rounded-2xl text-black"
             type="text"
             placeholder="Spotify"
             value={search}

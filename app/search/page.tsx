@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useAlbumStore } from "@/common/store/albumStore";
 import Link from "next/link";
+import { useAlbumStore } from "@/common/store/albumStore";
 import ArtistHover from "@/components/artist/subcomponents/ArtistHover";
 
 // ✅ 유동적으로 검색이 가능하도록 정규화

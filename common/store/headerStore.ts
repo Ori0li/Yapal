@@ -16,15 +16,18 @@ export type HeaderState = {
 
 export const useHeaderStore = create<HeaderState>((set, get) => ({
   search: "",
-  recentKeywords: [],
-  showDropdown: false,
+  recentKeywords: [], //최근 검색한 리스트
+  showDropdown: false, //다운 드롭 UI 표시 여부
   setSearch: (value) => set({ search: value }),
-  setShowDropdown: (value) => set({ showDropdown: value }),
+  setShowDropdown: (value) => set({ showDropdown: value }), //다운 드롭/닫기 제어
+
+  // 검색어 불러오기
   loadRecentKeywords: () => {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
     set({ recentKeywords: stored });
   },
 
+  // 검색실행 + 최근 검색어 저장 + 콜백실행
   handleSearch: (keyword, callback) => {
     const query = keyword.trim().toLowerCase();
     if (!query) return;
